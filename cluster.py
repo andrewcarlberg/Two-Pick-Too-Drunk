@@ -50,11 +50,12 @@ class ClusterAnalyer(object):
         self.index_tweets(reviews)
         self.results = {'rss':1000000000000000}
         y=0
-        while y<20:
+        while y<19:
             print 'Run number: ' + str(y+1)
             self.Centroids = self.setCentroids(int(math.sqrt(len(self.reviewers)/2)))
             x=1
-            while 1: 
+            while 1:
+
                 print 'Clustering...'
                 print 'Round: '+str(x)
                 self.find_cluster()
@@ -81,7 +82,14 @@ class ClusterAnalyer(object):
         print '\n\n\n\nResults:'
         print self.results
         cluster_collection = db[collection+'_cluster']
+<<<<<<< HEAD
+
+        
+    
+        for cluster in self.results['cluster']:        
+=======
         for cluster in self.results['cluster']:
+>>>>>>> ttwwoo/master
             cluster_collection.insert({'Cluster':cluster,
                                        'Reviewers':self.results['cluster'][cluster],
                                        'Centroid':self.Centroids[cluster]})
@@ -188,4 +196,3 @@ if __name__=="__main__":
     main()
     end_time = time.time()
     print 'done with clustering after %.3f seconds'%(end_time-start_time)
-
