@@ -11,6 +11,7 @@ import sys
 
 
 class Recommender(object):
+
         
     def recommender(self, user_ratings, reviews, clusters, db):
 
@@ -35,18 +36,19 @@ class Recommender(object):
      
         """ Finding the closest centroid to the user """
 
-        min_cluster_dist = 100000
-        min_cluster = 500
+        self.min_cluster_dist = 100000
+        self.min_cluster = 500
         current_cluster = 0
+        
 
         for cluster in centers:
             dist = self.CalcDistance(user_vector, cluster)
-            if dist<min_cluster_dist:
-                min_cluster_dist = dist
-                min_cluster = current_cluster
+            if dist<self.min_cluster_dist:
+                self.min_cluster_dist = dist
+                self.min_cluster = current_cluster
             current_cluster +=1
 
-        print min_cluster
+        print self.min_cluster
 
         """ For all reviews of beer in the cluster, find its average rating """
         reviewers_collection = db[clusters]
@@ -55,7 +57,7 @@ class Recommender(object):
 
         count = 0
         for r in reveiwer_list:
-            if count == min_cluster:
+            if count == self.min_cluster:
                 reviewers = r['Reviewers']
             count += 1
     
@@ -69,8 +71,10 @@ class Recommender(object):
                 for rating in temp_list:
                     temp_rating = rating['Rating']
                     self.beer_avg[rating['BeerId']].append(temp_rating)
-      
-        beer_reccomend = {}
+
+
+        
+        self.beer_reccomend = {}
 
         for beer in self.beer_avg:
             total = 0.0
@@ -78,26 +82,28 @@ class Recommender(object):
             for x in self.beer_avg[beer]:   
                 total = total + float(x)
             avg = total/len(self.beer_avg[beer])
-            beer_reccomend[beer] = avg
+            self.beer_reccomend[beer] = avg
 
+        self.beer_final_avg = {}
+        self.beer_final_avg = self.beer_reccomend
+        
         """ sort the average ratings,
         highest rating will be first recommendation it the user """
-
             
-        beer_reccomend = sorted(beer_reccomend,key =beer_reccomend.get, reverse = True)
+        self.beer_reccomend = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
     
         #print beer_reccomend, "\n"
-        beer_reccomend_set= set(beer_reccomend)
+        beer_reccomend_set= set(self.beer_reccomend)
         beer_reccomend_set.difference_update(self.only_users)         
         #print beer_reccomend_set, "\n"
 
         """ prints best beer id """
         count = 0
         best_beer = 0
-        for beer in beer_reccomend:
+        for beer in self.beer_reccomend:
             if beer in beer_reccomend_set:
-                best_beer = beer_reccomend[count]
-                print "Most reccomended beer ", beer_reccomend[count]
+                best_beer = self.beer_reccomend[count]
+                print "Most reccomended beer ", self.beer_reccomend[count]
                 break
             count +=1
 
@@ -110,8 +116,8 @@ class Recommender(object):
                 print "\t Beer: ",thing['Name']
                 print "\t From: ",thing['Brewery'] 
                 break
-
-
+        
+    
         
        
     def CalcDistance(self, dict1, dict2):
