@@ -7,12 +7,13 @@ import ujson
 import math
 import random
 import sys
+import itertools
 
 
 class Recommender(object):
 
         
-    def recommender(self, user_ratings, reviews, clusters, db):
+    def recommender(self, user_ratings, reviews, clusters, db, first, limit):
 
         """ finding centroid/vector for user's rating """
         self.users = []
@@ -89,24 +90,45 @@ class Recommender(object):
         """ sort the average ratings,
         highest rating will be first recommendation it the user """
             
-        self.beer_reccomend = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
-    
-        #print beer_reccomend, "\n"
+        self.beer_reccomend_sorted = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
+        #print self.beer_reccomend_sorted, "\n"
+
+        """ delete the beers that the user reviewed """
+            
         beer_reccomend_set= set(self.beer_reccomend)
         beer_reccomend_set.difference_update(self.only_users)         
         #print beer_reccomend_set, "\n"
 
-        """ prints best beer id """
+        beer_reccomend_set =list(beer_reccomend_set)
+        #print beer_reccomend_set, "\n"
+
+
+        """ finding just top results, set by limit """
+        count_limit = 0
+        self.limit_beer_recommend = []
+        for beer in self.beer_reccomend_sorted:
+
+            if count_limit > (limit-1):
+                break;
+            else:
+                if beer in beer_reccomend_set:
+                    if count_limit>= first:
+                        self.limit_beer_recommend.append(beer)
+                    count_limit +=1     
+
+        self.limit_beer_recommend= set(self.limit_beer_recommend)
+        
+        """ prints best beer id 
         count = 0
         best_beer = 0
         for beer in self.beer_reccomend:
-            if beer in beer_reccomend_set:
+            if beer in self.limit_beer_recommend:
                 best_beer = self.beer_reccomend[count]
                 print "Most reccomended beer ", self.beer_reccomend[count]
                 break
             count +=1
 
-        """ finding more info about are best beer """
+        #finding more info about are best beer 
         beers_collection = db['beers']
         beers_list = beers_collection.find()
 
@@ -115,7 +137,11 @@ class Recommender(object):
                 print "\t Beer: ",thing['Name']
                 print "\t From: ",thing['Brewery'] 
                 break
-        return (self.beer_final_avg,beer_reccomend_set)
+     """
+        
+
+        
+        return (self.beer_final_avg, self.limit_beer_recommend)
        
     def CalcDistance(self, dict1, dict2):
         distance = 0
