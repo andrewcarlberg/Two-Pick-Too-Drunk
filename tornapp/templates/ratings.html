@@ -1,22 +1,30 @@
 {% extends base.html %}
 
 {% block title %}
-ratings
+Beer Rating Results
 {% end %}
 
 
 {% block content %}
 {% set recommend = sorted(results,key =results.get, reverse = True) %}
 
+<table border="1">
+<tr>
+<th>Beers You Should Drink</th>
+<th>Predicted Rating</th>
+</tr>
+<tr>
 {% for beer in recommend %}	
     {% if beer in result_set %}
-        {{OBD[beer]}}  {{results[beer]}}<br>
+	
+		<td>{{OBD[beer]}} </td>
+		<td align="center">{{results[beer]}}</td>
+		<td>
+		</td>
+		</tr>
+         
     {% end %}    
 
 {% end %}
-
-
-
-
 {% end %}
 
