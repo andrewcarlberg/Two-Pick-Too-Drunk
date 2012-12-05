@@ -9,6 +9,16 @@ import random
 
 class BaseHandler(tornado.web.RequestHandler):
 
+    def get_login_url(self):
+        return u"account/LogIn"
+
+    def get_current_user(self):
+        user_json = self.get_secure_cookie("user")
+        if user_json:
+            return tornado.escape.json_decode(user_json)
+        else:
+            return None
+
     def get_current_user(self):
         user = self.get_secure_cookie("authed_user")
         return user or None
