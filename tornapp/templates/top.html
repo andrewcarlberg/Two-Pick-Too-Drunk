@@ -14,16 +14,8 @@ Beer Rating Results
 <th>Predicted Rating</th>
 </tr>
 <tr>
-{% for beer in recommend %}	
-    {% if beer in result_set %}
-	
-		<td>{{OBD[beer]}} </td>
-		<td align="center">{{results[beer]}}</td>
-		<td>
-		</td>
-		</tr>
-         
-    {% end %}    
+{% for beer in top %}	
+    {{beer}}    
 
 
 {% end %}
