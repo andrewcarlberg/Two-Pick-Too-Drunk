@@ -5,6 +5,7 @@ from pymongo import Connection
 from recommender import Recommender
 import utils
 from ObannonsBeerList import OBD
+import random 
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -208,7 +209,8 @@ class UserRequestHandler(BaseHandler):
         self.render("ratings.html",OBD=ObannonsBeerDict,results=results, result_set = result_set)
 
     def go_to_main_page(self,ObannonsBeerDict):
+        OBD_random = random.sample(ObannonsBeerDict.keys(),15)
         
-        self.render("index.html",OBD=ObannonsBeerDict)
+        self.render("index.html",OBD=ObannonsBeerDict, random_sample = OBD_random)
 
-
+    
