@@ -9,7 +9,7 @@ def main():
     db = utils.connect_db('Two_Pick_Too_Drunk')
     beer_collection = db['beers']
 
-    ObannonsBeerList = OBD.keys()1
+    ObannonsBeerList = OBD.keys()
     
     print 'Sorting Obannon\'s reviews'
     reviews = utils.read_beers()
