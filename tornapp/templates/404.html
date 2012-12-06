@@ -1,18 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+{% extends base.html %}
 
-<title>Go Home, Your Drunk! </title>
 
-{% block head1 %}{% end %}
-{% block head2 %}{% end %}
+{% block title %}
+Go Home, Your Drunk! 
+{% end %}
 
-<script type="text/javascript" >
-</script>
-
-{% block head2 %}{% end %}
-
-</head>
-<body>
+{% block content %}
+<div align="center">
 <img src="{{ static_url("images/404.jpg") }}"/>
-</body>
-</html>
+</div>
+{% end %}

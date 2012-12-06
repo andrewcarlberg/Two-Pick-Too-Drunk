@@ -8,10 +8,11 @@ Two Pick Too Drunk
 {% block content %}
 
 
-H!!!  
-
 {% if current_user %}
-{{current_user.name}}
+Hello, {{current_user.name}}
+
+{% else %}
+You should really log in or create and account
 {% end %}
 
 {% end %}
