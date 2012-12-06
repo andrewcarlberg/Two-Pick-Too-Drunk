@@ -6,13 +6,15 @@ Two Pick Too Drunk
 {% end %}
 
 {% block content %}
-
+    {% if message %}
+        Log in failed, Please try again
+    {% end %}
     <h1>please login:</h1>
     <br/>
 
 
      <form id="login_form" action="login" method="post">
-        <label class="grey" for="log">Email Address</label><br />
+        <label class="grey" for="log">User Name</label><br />
         <input type="text" name="email" style="width:99%" id="email"><br>
         <label class="grey" for="pwd">Password</label><br />
         <input type="password" name="password" style="width:99%" id="password"><br />
@@ -22,7 +24,5 @@ Two Pick Too Drunk
     <br/>
     <a href='register'>register</a>
     <br/>
-    <a href='twitter_login'> Login with Twitter </a> <br/>
-    <a href='facebook_login'> Login with Facebook </a> <br/>
 
 {% end %}

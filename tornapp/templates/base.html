@@ -36,21 +36,22 @@
 <body bgcolor="ivory">
 <div class="container">
 <div class="span-8" style="float:right">
-{% if current_user %}
- Hi {{current_user}}!
-{% else %}
-{% block logged_in %}
-   <a href="/account/login"> Login/Sign Up</a>
-{% end %}
+    {% if current_user %}
+        Hi {{current_user.nick}}! <a href="/account/logout">Logout</a>
+    {% else %}
+        {% block logged_in %}
+            <a href="/account/login"> Login/Sign Up</a>
+        {% end %}
+
+    {% end %}
  </div>
-{% end %}
 
 <div class="nav span-24 last">
 <div><a href="/"><img src="{{ static_url("images/drunklogo.png") }}"/></a></div>
 <div id='cssmenu'  style="background-color: black;">
         <ul>
-        <li class='active '><a href='index.html'><span>Home</span></a></li>
-        <li class='has-sub '><a href='#'><span>My Account</span></a>
+        <li class='active '><a href='/'><span>Home</span></a></li>
+        <li class='has-sub '><a href='/account/home'><span>My Account</span></a>
             <ul>
                 <li><a href='#'><span>Reviewed Beers</span></a></li>
                 <li><a href='#'><span>Recommendation List</span></a></li>

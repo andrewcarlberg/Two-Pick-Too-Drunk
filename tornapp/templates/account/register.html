@@ -8,7 +8,7 @@ Two Pick Too Drunk
 {% block content %}
 
 {% if error %}
-WE are sorry, that username is already taken.  Would you like to try again?
+We are sorry, that username is already taken.  Would you like to try again?
 {% else %}
 Hello! Please Register!
 {% end %}
@@ -18,10 +18,15 @@ Hello! Please Register!
 
 	<form id="login_form" action="register" method="post">
 		<label class="grey" for="log">Username</label><br />
-		<input type="text" name="email" style="width:99%" id="email"><br>
+		<input type="text" name="username" style="width:50%" id="username"><br>
 		<label class="grey" for="pwd">Password</label><br />
-		<input type="password" name="password" style="width:99%" id="password"><br />
-		<label />
+		<input type="password" name="password" style="width:50%" id="password"><br /><label />
+        <label class="grey" for="fname">First Name</label><br />
+		<input type="text" name="fName" style="width:50%" id="fName"><br>
+		<label class="grey" for="lName">Last Name</label><br />
+        <input type="text" name="lName" style="width:50%" id="lName"><br /><label />
+        <label class="grey" for="email">Email</label><br />
+		<input type="text" name="email" style="width:5args0%" id="email"><br>
 		<input type="submit" id="loginbtn" name="login" value="LOGIN" class="button"><br />
 	</form>
 	<br/>

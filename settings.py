@@ -7,6 +7,7 @@ torn_settings = dict(
     db_uri  = "",
     db_user = "",
     db_pass = "",
+    mongo_db = 'Two_Pick_Too_Drunk',
     mongo_host = 'localhost',
     mongo_port = 27017,
     login_url="/auth/login",

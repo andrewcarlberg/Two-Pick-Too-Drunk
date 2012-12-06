@@ -6,22 +6,46 @@ from recommender import Recommender
 import utils
 from ObannonsBeerList import OBD
 import random 
+from datetime import datetime
+import json
+from ..models import User 
+
 
 class BaseHandler(tornado.web.RequestHandler):
 
-    def get_login_url(self):
-        return u"account/LogIn"
-
     def get_current_user(self):
-        user_json = self.get_secure_cookie("user")
-        if user_json:
-            return tornado.escape.json_decode(user_json)
+        # just the user _id
+        api_token = self.get_argument('apitoken','')
+        api_token_login = self.get_argument('apitoken_login','')
+        if api_token:
+            u = User.find_one({'api_token': api_token})
+            if api_token_login:
+                self.set_current_user(u)
+            return u
         else:
-            return None
+            sc = self.get_secure_cookie('authed_user')
+            if sc:
+                u_ = json.loads(self.get_secure_cookie('authed_user'))
+                nick = u_['user']
+                return User.search(nick=nick).first()
+        return None
 
-    def get_current_user(self):
-        user = self.get_secure_cookie("authed_user")
-        return user or None
+    def set_current_user(self, user):
+        # now's as good a time as any to update the search tokens on a user
+        user.last_login = datetime.now()
+    
+        self.set_secure_cookie(
+            'authed_user',
+            json.dumps({'user':user.nick}),
+            expires_days=7,
+            )
+
+    def clear_current_user(self):
+        self._current_user = None
+        self.set_secure_cookie(
+            'authed_user',
+            '',
+            )
 
     def ok(self, data=None):
         self.write(json_encode({'status':'ok', 'data':data}))
