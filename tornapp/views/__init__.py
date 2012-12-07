@@ -3,6 +3,7 @@ import tornado.web
 
 # build our views here.
 import account
+import search
 
 
 # this MUST COME LAST

@@ -135,3 +135,15 @@ class User(GPModel):
         return retvals, numpages
 
 
+class Beer(GPModel):
+    """
+    Our definition of a system user.
+    """
+    Brewery = Field()
+    BeerId = Field()
+    Name = Field()
+    BreweryId = Field()
+    AverageRating = Field(default=-1)
+
+
+    
