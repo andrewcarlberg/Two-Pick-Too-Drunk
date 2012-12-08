@@ -88,15 +88,11 @@ class User(GPModel):
     email = Field()
     created_at = Field(default=now)
     last_login = Field(datetime, default=now)
-    Beers_Rated = Field(dict, default={})
+    Beers_Rated = Field(list, default={})
     To_Drink_Beers = Field(list, default=[])
+    Recommendations = Field(list, default={})
+    last_beer_update = Field(datetime,default=now)
 
-    # we break user search up into two tiers.
-    # tier 1 will search by full nick, full email - lower cased
-    # tier 2 searches by normalized tokenized fields
-    stokens_1 = Field(list, default=list) # list of normalized tokens for search
-    stokens_2 = Field(list, default=list) # list of normalized tokens for search
-    
     @classmethod
     def lookup(cls, query, page=0, limit=5):
         db = mogo_connection.instance().get_database()
