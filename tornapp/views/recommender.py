@@ -13,7 +13,7 @@ import itertools
 class Recommender(object):
 
         
-    def recommender(self, user_ratings, reviews, clusters, db, first, limit):
+    def recommender(self, user_ratings, reviews, clusters, db, forward, first, limit):
 
         """ finding centroid/vector for user's rating """
         self.users = []
@@ -89,8 +89,11 @@ class Recommender(object):
         
         """ sort the average ratings,
         highest rating will be first recommendation it the user """
-            
-        self.beer_reccomend_sorted = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
+        if forward == True:
+            self.beer_reccomend_sorted = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
+        else:
+            self.beer_reccomend_sorted = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = False)
+        
         #print self.beer_reccomend_sorted, "\n"
 
         """ delete the beers that the user reviewed """
