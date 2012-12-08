@@ -13,7 +13,7 @@ import itertools
 class Recommender(object):
 
         
-    def recommender(self, user_ratings, reviews, clusters, db, first, limit):
+    def recommender(self, user_ratings, reviews, clusters, db, first=None, limit=None):
 
         """ finding centroid/vector for user's rating """
         self.users = []
@@ -82,7 +82,7 @@ class Recommender(object):
             for x in self.beer_avg[beer]:   
                 total = total + float(x)
             avg = total/len(self.beer_avg[beer])
-            self.beer_reccomend[beer] = round(avg,2)
+            self.beer_reccomend[beer] = avg
 
         self.beer_final_avg = {}
         self.beer_final_avg = self.beer_reccomend
@@ -108,7 +108,7 @@ class Recommender(object):
         self.limit_beer_recommend = []
         for beer in self.beer_reccomend_sorted:
 
-            if count_limit > (limit-1):
+            if limit and count_limit > (limit-1):
                 break;
             else:
                 if beer in beer_reccomend_set:
@@ -129,7 +129,7 @@ class Recommender(object):
             count +=1
 
         #finding more info about are best beer 
-        beers_collection = db['beers']
+        beers_collection = db['beer']
         beers_list = beers_collection.find()
 
         for thing in beers_list:

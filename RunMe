@@ -1,4 +1,7 @@
 #!/bin/sh
+echo ' Installings required python libraries'
+pip install -r reqs.pip
+
 echo 'python reviewersorter.py Reviews/Reviews.json'
 python reviewersorter.py Reviews/Reviews.json
 

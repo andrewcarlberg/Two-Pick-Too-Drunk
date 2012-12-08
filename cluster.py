@@ -83,6 +83,7 @@ class ClusterAnalyer(object):
         print '\n\n\n\nResults:'
         print self.results
         cluster_collection = db[collection+'_cluster']
+        cluster_collection.remove()
         for cluster in self.results['cluster']:
             cluster_collection.insert({'Cluster':cluster,
                                        'Reviewers':self.results['cluster'][cluster],
@@ -144,7 +145,7 @@ class ClusterAnalyer(object):
         x=0
         CentroidsList = []
         db = utils.connect_db('Two_Pick_Too_Drunk')
-        bc = db['beers']
+        bc = db['beer']
         beers = list()
         for y in bc.find():
             beers.append(y['BeerId'])
