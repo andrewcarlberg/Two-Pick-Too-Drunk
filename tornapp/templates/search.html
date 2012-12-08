@@ -11,6 +11,24 @@
     .created_at { font-size: 80%; background-color: #d0d0d0; }
 {% end %}
 
+{% block script %}
+$(document).ready(function(){
+    elements = document.getElementsByClassName("star {split:4}" );
+    window.setInterval(function () {
+        elements = document.getElementsByClassName("star {split:4}" );
+        var ratingsList = {} 
+        for (var i=0; i<elements.length;i++){
+            if (elements[i].checked){
+                ratingsList[elements[i].name] = elements[i].value
+            }
+        }
+        $.post("/ratings",ratingsList);
+    }, 250);
+}) 
+
+
+{% end %}
+
 
 {% block content %}
 
@@ -25,32 +43,18 @@
         {% for beer in beers %}
             <div class='tweet' id={{ beer['BeerId'] }} >
                 <h2>{{ beer['Name'] }}
-                    <div style="float:right">
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value=".25"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value=".5"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value=".75"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="1"/>
-
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="1.25"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="1.5"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="1.75"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="2"/>
-
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="2.25"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="2.5"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="2.75"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="3"/>
-
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="3.25"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="3.5"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="3.75"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="4"/>
-
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="4.25"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="4.5"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="4.75"/>
-                    <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value="5"/>
-                    </div>
+                    {% if current_user %}
+                        <div style="float:right">
+                        {% for value in [".25",".5",".75","1","1.25","2.5","2.75","2","2.25","2.5","2.75","3","3.25","3.5","3.75","4","4.25","4.5","4.75","5"] %}
+                            {% if beer['BeerId'] in updatedDict and value == updatedDict[beer['BeerId']] %}
+                                <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value={{value}} checked/>
+                            {% else %}
+                                <input name={{ beer['BeerId'] }}  type="radio" class="star {split:4}" value={{value}} />
+                            {% end %}
+                        
+                        {% end%}
+                        </div>
+                    {% end %}
                 </h2>    
                     Brewery: {{ beer['Brewery'] }} 
                     {% if beer['AverageRating'] != -1 %}
