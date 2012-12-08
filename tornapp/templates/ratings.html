@@ -6,7 +6,7 @@ Beer Rating Results
 
 
 {% block content %}
-{% set recommend = sorted(results,key =results.get, reverse = True) %}
+{% set recommend = sorted(results,key =results.get, reverse = False) %}
 
 <table border="1">
 <tr>

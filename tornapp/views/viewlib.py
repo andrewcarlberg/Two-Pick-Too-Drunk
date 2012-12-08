@@ -239,7 +239,7 @@ class UserRequestHandler(BaseHandler):
         clusters = 'obannons_reviews_cluster'
 
         recommenderer = Recommender()
-        (results,result_set) = recommenderer.recommender(user_ratings, reviews, clusters, db, 0, 15)
+        (results,result_set) = recommenderer.recommender(user_ratings, reviews, clusters, db, False, 0, 15)
         self.render("ratings.html",OBD=ObannonsBeerDict,results=results, result_set = result_set)
 
     def go_to_main_page(self,ObannonsBeerDict):
