@@ -7,6 +7,8 @@ import sys
 import tornapp  # our application
 from settings import torn_settings as settings
 
+from mogo import connect as mogo_connect
+
 from optparse import OptionParser
 from tornapp.views.viewlib import route
 
@@ -15,6 +17,9 @@ def start_instance(settings):
         tornapp.setup_app(settings)
         )
     http_server.listen(settings['port'])
+    settings['_mogo_connection'] = mogo_connect(settings['mongo_db'],
+                                             host=settings['mongo_host'],
+                                             port=settings['mongo_port'])
 
     try: tornado.ioloop.IOLoop.instance().start()
     except KeyboardInterrupt: pass

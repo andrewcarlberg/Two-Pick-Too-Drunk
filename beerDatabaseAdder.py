@@ -7,7 +7,7 @@ from beer_average_rating import BeerAverage
 
 def main():
     db = utils.connect_db('Two_Pick_Too_Drunk')
-    beer_collection = db['beers']
+    beer_collection = db['beer']
     beer_collection.remove()
     
     beer_rating = BeerAverage()
