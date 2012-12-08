@@ -7,7 +7,7 @@ from ObannonsBeerList import OBD
 
 def main():
     db = utils.connect_db('Two_Pick_Too_Drunk')
-    beer_collection = db['beers']
+    beer_collection = db['beer']
 
     ObannonsBeerList = OBD.keys()
     

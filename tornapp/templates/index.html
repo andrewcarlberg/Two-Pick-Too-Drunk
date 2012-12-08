@@ -9,50 +9,6 @@ Two Pick Too Drunk
 {% end %}
 
 {% block content %}
-
-<form id="form">
-
-{% for t in random_sample %}
-<div id={{t}} class="Clear" style="width:90%">
-    <div style="float:left; vertical-align:top">
-        {{OBD[t]}}
-    </div>
-
-    <div>
-        <input name={{t}}  type="radio" class="star {split:4}" value=".25"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value=".5"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value=".75"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="1"/>
-
-        <input name={{t}}  type="radio" class="star {split:4}" value="1.25"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="1.5"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="1.75"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="2"/>
-
-        <input name={{t}}  type="radio" class="star {split:4}" value="2.25"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="2.5"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="2.75"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="3"/>
-
-        <input name={{t}}  type="radio" class="star {split:4}" value="3.25"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="3.5"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="3.75"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="4"/>
-
-        <input name={{t}}  type="radio" class="star {split:4}" value="4.25"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="4.5"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="4.75"/>
-        <input name={{t}}  type="radio" class="star {split:4}" value="5"/>
-
-    </div>
-</div>
-{% end %}
-<div class="Clear" style="width:100%">
-    <input type="submit" value="Submit Ratings"/>
-</div>
-
-</form>
-
-
+Welcome to our beer reviewer.
                         
 {% end %}
