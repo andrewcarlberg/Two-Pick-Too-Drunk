@@ -13,7 +13,7 @@ import itertools
 class Recommender(object):
 
         
-    def recommender(self, user_ratings, reviews, clusters, db, first=None, limit=None):
+    def recommender(self, user_ratings, reviews, clusters, db):
 
         """ finding centroid/vector for user's rating """
         self.users = []
