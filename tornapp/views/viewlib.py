@@ -219,32 +219,11 @@ class route(object):
         return self._routes
 
 @route('/')
-class UserRequestHandler(BaseHandler):
+class HomePageHandler(BaseHandler):
 
-    def get(self):
-        args = self.request.arguments
-        if args:
-            self.show_ratings(args,OBD)
-        else:
-            self.go_to_main_page(OBD)
+    def get(self):        
+        self.render("index.html")
 
-    def show_ratings(self,_args,ObannonsBeerDict):
-        args=list()
-        for arg in _args:
-            args.append({'BeerId':arg,'Rating':float(_args[arg][0]) })
-        user_ratings = args
-        db = utils.connect_db('Two_Pick_Too_Drunk')
+ 
 
-        reviews = 'obannons_reviews'
-        clusters = 'obannons_reviews_cluster'
-
-        recommenderer = Recommender()
-        (results,result_set) = recommenderer.recommender(user_ratings, reviews, clusters, db, 0, 15)
-        self.render("ratings.html",OBD=ObannonsBeerDict,results=results, result_set = result_set)
-
-    def go_to_main_page(self,ObannonsBeerDict):
-        OBD_random = random.sample(ObannonsBeerDict.keys(),15)
-        
-        self.render("index.html",OBD=ObannonsBeerDict, random_sample = OBD_random)
-
-    
+     

@@ -4,8 +4,10 @@ from tornado.escape import json_encode, json_decode
 from viewlib import route, BaseHandler, async_yield
 import utils
 from passlib.hash import sha256_crypt
+from operator import itemgetter
 
-from ..models import User 
+
+from ..models import User,Beer
 
 
 
@@ -79,3 +81,42 @@ class Logout(BaseHandler):
     def get(self):
         self.clear_current_user()
         self.redirect("/")
+
+@route('/account/recommendations')
+class HomePageHandler(BaseHandler):
+
+    def get(self):
+        user = self.get_current_user()
+        recommendations = sorted(user.Recommendations.items(), key=itemgetter(1), reverse=True)
+        top5 = recommendations[:5]
+        bottom5 = recommendations[-5:]
+        bottom5.reverse()
+        beers = list()
+        for x in top5+bottom5:
+            beers.append(x[0])
+        beerObjects = Beer.find({"BeerId":{"$in":beers}})
+        
+        lookUpBeer = dict()
+        for x in beerObjects:
+            lookUpBeer[x.BeerId] = {"name":x.Name,"brewery":x.Brewery,"avg":x.AverageRating}
+
+        self.render("account/recommendations.html",top5=top5,bottom5=bottom5,lookUp = lookUpBeer)
+        
+
+@route('/account/ratings')        
+class RatedHandler(BaseHandler):
+    def get(self):
+        user = self.get_current_user()
+        ratedDict = dict()
+        for x in user.Beers_Rated:
+            ratedDict[x['BeerId']]={"rating":x['Rating']}
+
+        beersObjects = Beer.find({"BeerId":{"$in":ratedDict.keys()}})
+        for beer in beersObjects:
+            data = ratedDict[beer["BeerId"]]
+            data["name"]=beer["Name"]
+            data["brewery"]=beer["Brewery"]
+            data["avg"] = beer["AverageRating"]
+            ratedDict[beer["BeerId"]]=data
+        self.render("account/rated.html", ratedDict=ratedDict)
+

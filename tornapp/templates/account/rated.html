@@ -1,0 +1,65 @@
+{% extends ../base.html %}
+
+{% block title %}
+What you have rated
+{% end %}
+
+
+{% block script %}
+$(document).ready(function(){
+    elements = document.getElementsByClassName("star {split:4}" );
+    window.setInterval(function () {
+        elements = document.getElementsByClassName("star {split:4}" );
+        var ratingsList = {} 
+        for (var i=0; i<elements.length;i++){
+            if (elements[i].checked){
+                ratingsList[elements[i].name] = elements[i].value
+            }
+        }
+        $.post("/ratings",ratingsList);
+    }, 250);
+}) 
+
+
+{% end %}
+
+{% block content %}
+
+
+{% if current_user %}
+<h3 align="center">Beers Rated</h3>
+<div id="rated" class="ratingsBox" style="width:100%">
+    {% set x = 1 %}
+    {% for beer in ratedDict %}
+    {% if x%2==1%}
+        <div class='beer' style="float:left;width:45%" id={{ beer }} >
+    {% else %}
+        <div class='beer' style="float:right;width:45%" id={{ beer }} >
+    {% end %}
+    {% set x = x+1 %}
+        <h2>{{ ratedDict[beer]['name'] }}
+            <div style="float:right">
+                {% for value in [".25",".5",".75","1","1.25","2.5","2.75","2","2.25","2.5","2.75","3","3.25","3.5","3.75","4","4.25","4.5","4.75","5"] %}
+                    {% if value == ratedDict[beer]['rating'] %}
+                        <input name={{ beer }}  type="radio" class="star {split:4}" value={{value}} checked/>
+                    {% else %}
+                        <input name={{ beer }}  type="radio" class="star {split:4}" value={{value}} />
+                    {% end %}
+                {% end%}
+            </div>
+         </h2>    
+         <div class='brewery'>{{ ratedDict[beer]['brewery']  }} </div>
+            {% if ratedDict[beer]['avg'] != -1 %}
+                <div class='averageRating'>Average Rating: {{ round(ratedDict[beer]['avg'],2) }}</div>
+            {% end %}            
+        </div>
+    {% end %}
+</div>
+
+
+
+{% else %}
+You're not logged in you drunk!
+{% end %}
+
+{% end %}
