@@ -9,13 +9,28 @@ Your Recommendations
 $(document).ready(function(){
     elements = document.getElementsByClassName("star {split:4}" );
     window.setInterval(function () {
-        elements = document.getElementsByClassName("star {split:4}" );
         var ratingsList = {} 
+        deleteButtons = document.getElementsByClassName("rating-cancel")
+        for ( var x=0; x<deleteButtons.length; x++){
+            stars = deleteButtons[x].parentNode.childNodes
+            var isChecked = new Boolean(1);
+            if( stars[0].className =="rating-cancel" && stars[1].className == "star-rating rater-0 star {split:4} star-rating-applied star-rating-live"){
+                isChecked = false
+            }
+            if(isChecked==false){
+                var beerId = deleteButtons[x].parentNode.parentNode.parentNode.parentNode.id
+                ratingsList[beerId] = "0"
+            }
+         
+        }
+        
+        elements = document.getElementsByClassName("star {split:4}" );
         for (var i=0; i<elements.length;i++){
             if (elements[i].checked){
                 ratingsList[elements[i].name] = elements[i].value
             }
         }
+        
         $.post("/ratings",ratingsList);
     }, 250);
 }) 

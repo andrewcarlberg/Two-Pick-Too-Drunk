@@ -3,10 +3,16 @@ Two-Pick-Too-Drunk
 
 CSCE 470 beer recommender service
 
-##To Run:
+##To Setup:
 * start MongoDB
 * run script RunMe
 * In order to get reviews you must cluster either the O'bannons Reviews or all reviews
-* To run the recommender, once clustering has occurred
-	1. Run Unit Tests with nosetests
-	2. Run 'recommender.py RecommenderInput.json'
+* Exports of each database collection are stored in Cached Database.  Importing them will allow you avoid using the RunMe.
+
+##To Run
+* Start MongoDB
+* Run ./launch.py
+* In another terminal run "python claculateRecommendations.py"
+* go to localhost:6488
+
+

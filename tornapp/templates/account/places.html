@@ -15,7 +15,38 @@ $(document).ready(function(){
         });
     })
     .trigger('change');
+
+    elements = document.getElementsByClassName("star {split:4}" );
+    window.setInterval(function () {
+        var ratingsList = {} 
+        deleteButtons = document.getElementsByClassName("rating-cancel")
+        for ( var x=0; x<deleteButtons.length; x++){
+            stars = deleteButtons[x].parentNode.childNodes
+            var isChecked = new Boolean(1);
+            if( stars[0].className =="rating-cancel" && stars[1].className == "star-rating rater-0 star {split:4} star-rating-applied star-rating-live"){
+                isChecked = false
+            }
+            if(isChecked==false){
+                var beerId = deleteButtons[x].parentNode.parentNode.parentNode.parentNode.id
+                ratingsList[beerId] = "0"
+            }
+         
+        }
+        
+        elements = document.getElementsByClassName("star {split:4}" );
+        for (var i=0; i<elements.length;i++){
+            if (elements[i].checked){
+                var beerId = elements[i].name.replace('top','').replace('bottom','') 
+                ratingsList[beerId] = elements[i].value
+            }
+        }
+        
+        $.post("/ratings",ratingsList);
+    }, 250);
+
 });
+
+
 {% end %}
 
 
@@ -36,12 +67,12 @@ $(document).ready(function(){
 <div id="top5" class="ratingsBox" style="float:left">
 <h3 align="center">Top 5 beers </h3>
 {% for beer in top5 %}
-    <div class='beer' id={{ beer[0] }} >
+    <div class='beer' id="top{{ beer[0] }}" >
         <h2>{{ lookUp[beer[0]]['name'] }}
         {% if current_user %}
         <div style="float:right">
             {% for value in [".25",".5",".75","1","1.25","2.5","2.75","2","2.25","2.5","2.75","3","3.25","3.5","3.75","4","4.25","4.5","4.75","5"] %}
-                <input name={{ beer[0] }}  type="radio" class="star {split:4}" value={{value}} />
+                <input name="top{{ beer[0] }}"  type="radio" class="star {split:4}" value={{value}} />
             {% end%}
         </div>
         </h2>
@@ -61,12 +92,12 @@ $(document).ready(function(){
 <h3 align="center">Bottom 5 beers  </h3>
 
 {% for beer in bottom5 %}
-    <div class='beer' id={{ beer[0] }} >
+    <div class='beer' id="bottom{{ beer[0] }}" >
         <h2>{{ lookUp[beer[0]]['name'] }} 
         {% if current_user %}
         <div style="float:right">
             {% for value in [".25",".5",".75","1","1.25","2.5","2.75","2","2.25","2.5","2.75","3","3.25","3.5","3.75","4","4.25","4.5","4.75","5"] %}
-                <input name={{ beer[0] }}  type="radio" class="star {split:4}" value={{value}} />
+                <input name="bottom{{ beer[0] }}"  type="radio" class="star {split:4}" value={{value}} />
             {% end%}
         </div>
         </h2>

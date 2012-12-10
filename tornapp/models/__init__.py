@@ -88,9 +88,9 @@ class User(GPModel):
     email = Field()
     created_at = Field(default=now)
     last_login = Field(datetime, default=now)
-    Beers_Rated = Field(list, default={})
+    Beers_Rated = Field(list, default=[])
     To_Drink_Beers = Field(list, default=[])
-    Recommendations = Field(list, default={})
+    Recommendations = Field(dict, default={})
     last_beer_update = Field(datetime,default=now)
 
     @classmethod
@@ -140,6 +140,10 @@ class Beer(GPModel):
     Name = Field()
     BreweryId = Field()
     AverageRating = Field(default=-1)
+    tokens = Field()
+    vect = Field()
+    sim = Field(default = 0)
+    
 
 class Pub(GPModel):
     """
