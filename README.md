@@ -14,5 +14,6 @@ CSCE 470 beer recommender service
 * Run ./launch.py
 * In another terminal run "python claculateRecommendations.py"
 * go to localhost:6488
+* On the first time running the website, go to /addObannons to add the places into the database.  Verison 2.0 will  make this easier.
 
 
