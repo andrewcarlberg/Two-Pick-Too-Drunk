@@ -58,7 +58,7 @@ border:5px solid transparent; border-top:5px solid #000; }
 #cssmenu ul li > ul li a{ outline:none; display:block; position:relative; margin:0; padding:8px 20px; font:10pt Arial, Helvetica, sans-serif; color:#fff; text-decoration:none; text-shadow:1px 1px 0 rgba(0,0,0, 0.5); } 
 
 #cssmenu, #cssmenu > ul > li > ul > li a:hover{ 
-    background:#ffffff; 
+    background:black; 
     } 
 #cssmenu{border-color:#000000;} 
 #cssmenu > ul > li > a{border-right:1px solid #1b313d; color:#fff;} 
