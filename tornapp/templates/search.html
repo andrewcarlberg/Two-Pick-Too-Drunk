@@ -43,10 +43,11 @@ $(document).ready(function(){
 </form>
 
 <br>
+    {% if beers %}
     {% if len(beers)==0 %}
         Sorry, nothing matched your search
     {% end %}    
-    {% if beers %}
+
         <div class="ratingBox" style="width:500px">
         {% for beer in beers %}
             <div class='beer' id={{ beer['BeerId'] }} >
