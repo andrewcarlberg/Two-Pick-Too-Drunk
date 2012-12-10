@@ -13,7 +13,7 @@ import itertools
 class Recommender(object):
 
         
-    def recommender(self, user_ratings, reviews, clusters, db, first=None, limit=None):
+    def recommender(self, user_ratings, reviews, clusters, db):
 
         """ finding centroid/vector for user's rating """
         self.users = []
@@ -79,7 +79,7 @@ class Recommender(object):
         for beer in self.beer_avg:
             total = 0.0
             
-            for x in self.beer_avg[beer]:   
+            for x in self.beer_avg[beer]:
                 total = total + float(x)
             avg = total/len(self.beer_avg[beer])
             self.beer_reccomend[beer] = avg
@@ -87,8 +87,7 @@ class Recommender(object):
         self.beer_final_avg = {}
         self.beer_final_avg = self.beer_reccomend
         
-        """ sort the average ratings,
-        highest rating will be first recommendation it the user """
+        """ sort the average ratings, highest rating will be first recommendation it the user """
             
         self.beer_reccomend_sorted = sorted(self.beer_reccomend,key =self.beer_reccomend.get, reverse = True)
         #print self.beer_reccomend_sorted, "\n"
@@ -96,52 +95,15 @@ class Recommender(object):
         """ delete the beers that the user reviewed """
             
         beer_reccomend_set= set(self.beer_reccomend)
-        beer_reccomend_set.difference_update(self.only_users)         
+        beer_reccomend_set.difference_update(self.only_users)
         #print beer_reccomend_set, "\n"
 
-        beer_reccomend_set =list(beer_reccomend_set)
+        #beer_reccomend_set =list(beer_reccomend_set)
         #print beer_reccomend_set, "\n"
-
-
-        """ finding just top results, set by limit """
-        count_limit = 0
-        self.limit_beer_recommend = []
-        for beer in self.beer_reccomend_sorted:
-
-            if limit and count_limit > (limit-1):
-                break;
-            else:
-                if beer in beer_reccomend_set:
-                    if count_limit>= first:
-                        self.limit_beer_recommend.append(beer)
-                    count_limit +=1     
-
-        self.limit_beer_recommend= set(self.limit_beer_recommend)
-        
-        """ prints best beer id 
-        count = 0
-        best_beer = 0
-        for beer in self.beer_reccomend:
-            if beer in self.limit_beer_recommend:
-                best_beer = self.beer_reccomend[count]
-                print "Most reccomended beer ", self.beer_reccomend[count]
-                break
-            count +=1
-
-        #finding more info about are best beer 
-        beers_collection = db['beer']
-        beers_list = beers_collection.find()
-
-        for thing in beers_list:
-            if thing['BeerId'] == best_beer:
-                print "\t Beer: ",thing['Name']
-                print "\t From: ",thing['Brewery'] 
-                break
-     """
-        
+  
 
         
-        return (self.beer_final_avg, self.limit_beer_recommend)
+        return (self.beer_final_avg, beer_reccomend_set)
        
     def CalcDistance(self, dict1, dict2):
         distance = 0
@@ -164,25 +126,24 @@ class Recommender(object):
         
 
 #def main():
-#    """
-#    Takes agrument from commandline, of json file that contains user's beer ratings
-#    """
+# """
+# Takes agrument from commandline, of json file that contains user's beer ratings
+# """
 #
-#    user_ratings = utils.read_beers()
-#    db = utils.connect_db('Two_Pick_Too_Drunk')
+# user_ratings = utils.read_beers()
+# db = utils.connect_db('Two_Pick_Too_Drunk')
 #
-#    reviews = 'obannons_reviews'
-#    clusters = 'obannons_reviews_cluster'
+# reviews = 'obannons_reviews'
+# clusters = 'obannons_reviews_cluster'
 
-#    recommenderer = Recommender()
-#    recommenderer.recommender(user_ratings, reviews, clusters, db)
+# recommenderer = Recommender()
+# recommenderer.recommender(user_ratings, reviews, clusters, db)
     
 
 
 #if __name__=="__main__":
-#    start_time = time.time()
-#    main()
-#    end_time = time.time()
-#    print 'done with recommendation after %.3f seconds'%(end_time-start_time)
-
+# start_time = time.time()
+# main()
+# end_time = time.time()
+# print 'done with recommendation after %.3f seconds'%(end_time-start_time)
 
