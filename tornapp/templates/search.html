@@ -47,7 +47,7 @@ $(document).ready(function(){
                 </h2>    
                 <div class='brewery'>{{ beer['Brewery']  }} </div>
                 {% if current_user and beer['BeerId'] in current_user.Recommendations.keys() %}
-                    <div style="float:right">We think you'll give it a {{current_user.Recommendations[beer['BeerId']]}}</div>
+                    <div style="float:right">We think you'll give it a {{round(current_user.Recommendations[beer['BeerId']],2)}}</div>
                 {% end %}
                 {% if beer['AverageRating'] != -1 %}
                     <div class='averageRating'>Average Rating: {{ round(beer['AverageRating'],2) }}</div>

@@ -42,7 +42,7 @@ $(document).ready(function(){
         </h2>
         {% end %}
         <div class='brewery'>{{ lookUp[beer[0]]['brewery']  }} </div>
-        <div style="float:right">We think you'll give it a {{ beer[1] }}</div>
+        <div style="float:right">We think you'll give it a {{ round(beer[1],2) }}</div>
 
         {% if lookUp[beer[0]]['avg'] != -1 %}
             <div class='averageRating'>Average Rating: {{ round(lookUp[beer[0]]['avg'],2) }}</div>
@@ -67,7 +67,7 @@ $(document).ready(function(){
         </h2>
         {% end %}
         <div class='brewery'>{{ lookUp[beer[0]]['brewery']  }} </div>
-        <div style="float:right">We think you'll give it a {{ beer[1] }}</div>
+        <div style="float:right">We think you'll give it a {{ round(beer[1],2) }}</div>
 
         {% if lookUp[beer[0]]['avg'] != -1 %}
             <div class='averageRating'>Average Rating: {{ round(lookUp[beer[0]]['avg'],2) }}</div>
