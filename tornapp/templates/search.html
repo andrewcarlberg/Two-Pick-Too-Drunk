@@ -1,16 +1,5 @@
 {% extends base.html %}
 
-{% block style %}
-    .tweet {
-        font-size:14px;
-        border: 1px solid #333; width: 500px; -webkit-border-radius: 6px;
-        margin-bottom:20px;
-        padding: 6px;
-        }
-    .tweet h2 { font-size: 18px; }
-    .created_at { font-size: 80%; background-color: #d0d0d0; }
-{% end %}
-
 {% block script %}
 $(document).ready(function(){
     elements = document.getElementsByClassName("star {split:4}" );
@@ -29,19 +18,19 @@ $(document).ready(function(){
 
 {% end %}
 
-
 {% block content %}
 
 <form id="login_form" action="search" method="post">
         <label class="grey" for="search">Beer/Brewery</label>
         <input type="text" name="query" style="width:50%" id="search">
-        <input type="submit" id="searchbtn" name="search" value="SEARCH" class="button"><br />
+        <input type="submit" id="searchbtn" name="search" value="SEARCH" class="button" ><br />
 </form>
-<br>
 
+<br>
     {% if beers %}
+        <div class="ratingBox" style="width:500px">
         {% for beer in beers %}
-            <div class='tweet' id={{ beer['BeerId'] }} >
+            <div class='beer' id={{ beer['BeerId'] }} >
                 <h2>{{ beer['Name'] }}
                     {% if current_user %}
                         <div style="float:right">
@@ -56,12 +45,17 @@ $(document).ready(function(){
                         </div>
                     {% end %}
                 </h2>    
-                    Brewery: {{ beer['Brewery'] }} 
-                    {% if beer['AverageRating'] != -1 %}
-                        <br>Average Ragting: {{ round(beer['AverageRating'],2) }}
-                    {% end %}
+                <div class='brewery'>{{ beer['Brewery']  }} </div>
+                {% if current_user and beer['BeerId'] in current_user.Recommendations.keys() %}
+                    <div style="float:right">We think you'll give it a {{current_user.Recommendations[beer['BeerId']]}}</div>
+                {% end %}
+                {% if beer['AverageRating'] != -1 %}
+                    <div class='averageRating'>Average Rating: {{ round(beer['AverageRating'],2) }}</div>
+                {% end %}
+                    
             </div>
         {% end %}
+        </div>
     {% end %}
 
 {% end %}
