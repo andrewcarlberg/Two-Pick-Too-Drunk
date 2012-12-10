@@ -1,0 +1,230 @@
+OBD = {'2264' : '#1.  Lagunitas Brown Sugar',
+               '24651': '#2.  Left Hand Polestar Pilsner',
+               '1769' : '#3.  Alaskan Smoked Porter',
+               '73221': '#4.  Rahr & Sons Visonary Brew',
+               '1062' : '#5.  Live Oak Hefe (5.2%)',
+               '409'  : '#6.  North Coast Scrimshaw (4.4%)',
+               '2093' : '#7.  Dogfish Head 90 Minute IPA (9%)',
+               '1907' : '#8.  Dos Equis (5%)',
+               '2296' : '#9.  Big Sky Moose Drool Brown Ale (4.2%)',
+               '23720': '#10. Real Ale Devils Backbone',
+               '1212' : '#11. Blue Moon (5.4%)',
+               '1068' : '#12. St. Arnold Christmas',
+               '2508' : '#13. Maredsous 8 (8%)',
+               '75572': '#14. Karbach Yule Shoot Your Eye Out',
+               '29602': '#16. Smithwick\'s (4.5%)',
+               '862'  : '#17. Harp (5%)',
+               '82128': '#18. Real Ale B.A. Volume 15',
+               '909'  : '#19. Killian\'s Irish Red (4.9%)',
+               '639'  : '#20. New Castle (4.7%)',
+               '412'  : '#21. North Coast Old Rasputin',
+               '754'  : '#22. Guinness (4.1%)',
+               '73'   : '#23. Young\'s Double Choc. Stout (5.2%)',
+               '49070': '#24. Alaskan White (5.3%)',
+               '3434' : '#25. Left Hand Milk Stout NITRO (6%)',
+               '78'   : '#26. Blanche de Bruxelles,',
+               '1352' : '#27. Shiner Bock (4.4%)',
+               '72941': '#28. Karbach Hopadillo',
+               '33822': '#30. Rahr Winter Warmer',
+               '73576': '#31. karbach Sympathy for the Lager',
+               '72834': '#32. Karbach Weiss Versa Wheat',
+               '1946' : '#33. Franziskaner Hefe-Weiss (5%)',
+               '607'  : '#34. Fat Tire (5.3%)',
+               '1914' : '#35. 1554 Enlightened Black Ale (5.5%)',
+               '924'  : '#36. Franziskaner Dunkel Weiss (5%)',
+               '58017': '#37. Batch 19',
+               '666'  : '#38. Hacker Pschorr WeisseDark',
+               '102'  : '#39. Sam Adams Octoberfest',
+               '84831': '#40. Ommegang Scythe & sickle',
+               '2270' : '#41. *Carlsberg 11.2oz (5%)',
+               '48139': '#42. *Oskar Blues Mama\'s Yella Pils (5.3%)',
+               '25649': '#44. *Pyramid Apricot (5.1%)',
+               '27800': '#45. Brknrdge Vanilla Porter',
+               '86091': '#46. Real Ale Black Quad',
+               '61109': '#47. *St. Arnold Weedwacker',
+               '34804': '#48. *Land Shark 4.7%)',
+               '51480': '#49. Brooklyn Sorachi Ace',
+               '33'   : '#50. Unibroue Maudite',
+               '3295' : '#51. Avery Old Jubilation',
+               '1344' : '#52. *St. Arnold Fancy Lawn Mower (4.9%)',
+               '752'  : '#53. *Guinness Foreign Extra Stout (7.5%)',
+               '57286': '#54. *Guinness Black Lager (4.5%)',
+               '650'  : '#55. *Guinness Extra Stout (6%)',
+               '34'   : '#56. *Unibrone La fin du monde',
+               '246'  : '#57. *Heineken (5%)',
+               '403'  : '#58. *North Coast ACME IPA',
+               '14660': '#59. Real Ale Coffee Porter',
+               '63494': '#60. *Lindeman\'s Pomme (4%)',
+               '23713': '#61. *Full Sail Sessions Lager (5.3%)',
+               '50740': '#62. *Full Sail Sessions Black (5.4%)',
+               '53774': '#63. *Sam Adams Stone Brook Red',
+               '8951' : '#64. *Stone Oaked Arrogant Bastard (7.2%)',
+               '76781': '#65. *Dogfish Positive Contact',
+               '310'  : '#66. Harpoon Winter Warmer',
+               '45576': '#67. Southern Star Bombshell Blonde (5.25%)',
+               '71325': '#68. Harpoon UFO Pumpkin',
+               '689'  : '#69. *Red Stripe (4.7%)',
+               '9689' : '#70. Avery White Rascal',
+               '1768' : '#72. Alaskan Winter ',
+               '14712': '#73. *Oskar Blues Old Chub Scottish Ale(6.5%)',
+               '48933': '#74. *Harpoon UFO White (4.8%)',
+               '19956': '#75. *Rahr & Sons Blonde Lager (4.8%)'}  
+
+
+Taphouse = {
+    #Ales
+'1309': 'Alaskan Amber',
+'63': 'Anchor Steam',
+'623': 'Anderson Valley \"Boont\"',
+'6590': 'Boulder Hazed and Infused',
+'21339': 'Boundary Bay Dry-Hopped Amber',
+'59248': 'Elysian Men\'s Room Red',
+'3578': 'Fish Tale Organic Amber',
+'213': 'Full Sail Amber',
+'33375': 'Georgetown Chopper Red Ale',
+'4725': 'Hood Canal Agate Pass Amber',
+'3589': 'Mac & Jack\'s African Amber',
+'955': 'Maritime Nightwatch',
+'641': 'Mendocino Eye of the Hawk',
+'607': 'New Belgium Fat Tire',
+'335': 'Rogue Dead Guy Ale',
+'92': 'Stone Brewery Arrogant Bastard',
+
+#Belgians/Belgian Styles
+
+'139': 'Corsendonk Pale*',
+'1745': 'Duchesse De Bourgogne*',
+'248': 'Hoegaarden White Beer*',
+'2137': 'Leffe Blonde*',
+'599': 'Lindemans Framboise*',
+'1914': 'New Belgium 1554*',
+'30282': 'North Coast Brother Thelonious*',
+'411': 'North Coast Pranqster*',
+'12770': 'russian river damnation*',
+'31': 'Unibroue Blanche De Chambly*',
+'33': 'Unibroue Maudite*',
+
+#Bitters
+
+'2017': 'Elysian \"The Wise\" ESB',
+'219': 'Fuller\'s ESB',
+'1119': 'Redhook ESB',
+'361': 'Rogue Brutal Bitter',
+
+
+#Blondes
+
+'24952': 'Fish Tale Organic Blonde',
+'13611': 'Scuttlebutt Blonde',
+
+#Bocks
+
+'131': 'Ayinger Celebrator Dopplebock',
+'1352': 'Shiner Bock',
+'99': 'Spaten Optimator',
+
+#Brown Ales
+
+'2894': 'Avery Ellies Brown',
+'2296': 'Big Sky Moose Drool Ale',
+'639': 'NewCastle Brown Ale',
+'1339': 'Rogue Hazelnut Brown Nectar',
+
+#IPA
+'611': 'Anderson Valley Hop Ottin\' IPA',
+'3158': 'Bear Republic Hop Rod Rye',
+'42081': 'Beer Valley Leafer Madness Imperial Ipa',
+'70405': 'Boundary Bay IPA',
+'5527': 'Diamond Knot Industrial IPA',
+'2093': 'Dogfish Head 90 Min IPA',
+'2018': 'Elysian \"The Immortal\" IPA',
+'60992': 'Georgetown Lucille IPA',
+'48971': 'Hales Supergoose IPA',
+'916': 'Lagunitas IPA',
+'364': 'Maritime Imperial IPA',
+'960': 'Pike IPA',
+'26383': 'Skagit River Scullers IPA',
+'3358': 'Snoqualmie Falls Wildcat IPA',
+'4083': 'Stone Ruination IPA',
+
+#Lagers
+
+'436': 'Amstel Light',
+'867': 'Birra Moretti',
+'2270': 'Carlsberg',
+'1907': 'Dos Equis Special Lager',
+'61702': 'Emerald City Dottie',
+'55517': 'Everybody\'s Brewing Daily Bread',
+'862': 'Harp',
+'3062': 'HB Hofbrauhaus Original',
+'41786': 'Hopworks Organic Lager',
+'266': 'Kingfisher Indian Lager',
+'1249': 'Kirin Ichiban',
+'3970': 'Kronenbourg 1664',
+'1525': 'O.K. Beer',
+'4485': 'Roslyn Brookside Lager',
+'1944': 'Spaten Lager',
+'449': 'Stella Artois',
+'70354': 'Three Skulls "Black Beard" Dark Lager',
+
+#Pale Ales
+
+'1469': 'Alaskan Pale Ale',
+'811': 'Bass Ale',
+'2973': 'Big Sky Scape Goat Ale',
+'1798': 'Boddingtons Pub Ale (N)',
+'195': 'Deschutes Mirror Pond Pale Ale',
+'214': 'Full Sail Pale Ale',
+'12645': 'Georgetown Mannys Pale Ale',
+'2988': 'Hale\'s Cream Ale (N)',
+'5753': 'Kona Fire Rock Pale Ale',
+'276': 'Sierra Nevada Pale',
+'3359': 'Snoqualmie Copperhead',
+'706': 'Tetley\'s Ale (N)',
+
+#Pilsners
+
+'22799': 'Georgetown Roger\'s Pilsner',
+'12475': 'Krusovice Imperial',
+'958': 'Maritime Portage Bay Pilsner',
+'409': 'North Coast Scrimshaw Pilsner',
+'429': 'Pilsner Urquell',
+'61511': 'Three Skulls "Yellow Beard" Pilsner',
+'935': 'Warsteiner Pilsner',
+
+#Porters
+
+'198': 'Deschutes Black Butte Porter',
+'3576': 'Fish Tale Mudshark Porter',
+'3783': 'Mac & Jack\'s Blackcat Porter',
+'353': 'Rogue Mocha Porter',
+'3361': 'Snoqualmie Steam Train Porter',
+'90': 'Stone Smoked Porter',
+
+#Scottish Ales
+
+'36002': 'Boundary Bay Scotch',
+'962': 'Pike Kilt Lifter Scottish Style',
+
+#Stouts
+
+'1305': 'Alaskan Oatmeal Stout',
+'615': 'Anderson Valley Barney Flats Oatmeal',
+'197': 'Deschutes ObsIdian Stout',
+'2023': 'Elysian Dragons Tooth Stout',
+'650': 'Guinness Stout (N)',
+'703': 'Murphy\'s Irish Stout (N)',
+'412': 'North Coast Old Rasputin Imperial (N)',
+'56973': 'Rogue Shakespeare Stout (N)',
+'73': 'Young\'s Double Chocolate Stout (N)',
+
+#Wheats/Weizens
+
+'132': 'Ayinger Brau-Weisse',
+'1212': 'Blue Moon Belgian',
+'80167': 'Franziskaner Weissbier',
+'234': 'Hacker- Pschorr',
+'44286': 'Lazy Boy Hefe',
+'50473': 'Leavenworth Boulder Bend Dunkel',
+'12320': 'Leavenworth Whistling Pig Hefe',
+'1237': 'Pyramid Hefe' }

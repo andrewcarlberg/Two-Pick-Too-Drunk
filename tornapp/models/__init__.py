@@ -133,7 +133,7 @@ class User(GPModel):
 
 class Beer(GPModel):
     """
-    Our definition of a system user.
+    Beer!
     """
     Brewery = Field()
     BeerId = Field()
@@ -141,5 +141,17 @@ class Beer(GPModel):
     BreweryId = Field()
     AverageRating = Field(default=-1)
 
+class Pub(GPModel):
+    """
+    A Place
 
+    TODO: Figure out how to enter this data.  Can be done later
+    """
+    name = Field()
+    street = Field()
+    city = Field()
+    state = Field()
+    phoneNumber = Field(int)
+    zipCode = Field(int)
+    beerList = Field(list)
     

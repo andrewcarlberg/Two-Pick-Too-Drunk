@@ -5,9 +5,9 @@ from viewlib import route, BaseHandler, async_yield
 import utils
 from passlib.hash import sha256_crypt
 from operator import itemgetter
+from BeerLists import OBD, Taphouse
 
-
-from ..models import User,Beer
+from ..models import User,Beer,Pub
 
 
 
@@ -120,3 +120,62 @@ class RatedHandler(BaseHandler):
             ratedDict[beer["BeerId"]]=data
         self.render("account/rated.html", ratedDict=ratedDict)
 
+
+@route('/account/places')
+class PlacesHandler(BaseHandler):
+    def get(self):
+        name = self.get_argument("n", "")
+        if not name:
+            pubs = Pub.search()
+            self.render("account/places.html",pubs=pubs, ratings=False)
+        else:
+            user = self.get_current_user()
+            recommendations = user.Recommendations
+            pub = Pub.search(name=name).first()
+            pubRecommendations = dict()
+            for beer in pub.beerList:
+                if beer in recommendations:
+                    pubRecommendations[beer]=recommendations[beer]
+            pubRecommendations = sorted(pubRecommendations.items(), key=itemgetter(1), reverse=True)
+            top5 = pubRecommendations[:5]
+            bottom5 = pubRecommendations[-5:]
+            bottom5.reverse()
+            beers = list()
+            for x in top5+bottom5:
+                beers.append(x[0])
+            beerObjects = Beer.find({"BeerId":{"$in":beers}})
+        
+            lookUpBeer = dict()
+            for x in beerObjects:
+                lookUpBeer[x.BeerId] = {"name":x.Name,"brewery":x.Brewery,"avg":x.AverageRating}
+            pubs = Pub.search()
+            self.render("account/places.html",pubs=pubs,top5=top5,bottom5=bottom5,lookUp = lookUpBeer, ratings=True)
+
+
+    
+@route('/addObannons')
+class PubAdder(BaseHandler):
+    def get(self):
+        pub = Pub(
+                name = 'O\'Bannons Taphouse',
+                street = '103 Boyett St.',
+                city = 'College Station',
+                state = 'Tx',
+                phoneNumber = 9798469214,
+                zipCode = 77840,
+                beerList = OBD.keys()
+            )
+        pub.save()
+        pub2 = Pub(
+                name = 'Taphouse Grill',
+                street = '1506 Sixth Avenue',
+                city = 'Seattle',
+                state = 'Wa',
+                phoneNumber = 2068163314,
+                zipCode = 98101,
+                beerList = Taphouse.keys(),
+            )
+        pub2.save()    
+
+
+        self.render("index.html")
