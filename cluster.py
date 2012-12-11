@@ -52,7 +52,7 @@ class ClusterAnalyer(object):
         y=0
         while y<19:
             print 'Run number: ' + str(y+1)
-            self.Centroids = self.setCentroids(int(math.sqrt(len(self.reviewers)/2)))
+            self.Centroids = self.setCentroids(30)
             x=1
             while 1:
 
