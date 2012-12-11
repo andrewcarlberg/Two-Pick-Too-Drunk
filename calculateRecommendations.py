@@ -8,7 +8,7 @@ class RecommendationCalculations():
     def __init__(self):
         db = utils.connect_db('Two_Pick_Too_Drunk')
         collection = db['user']
-        last_update_start = datetime(2012, 12, 6)
+        last_update_start = datetime.today()
         reviews = 'reviewer'
         clusters = 'reviewer_cluster'
         updated = (False,1)
