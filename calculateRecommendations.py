@@ -17,6 +17,7 @@ class RecommendationCalculations():
             users  = collection.find({"last_beer_update":{"$gte":last_update_start}})
             start_time = time.time()
             for user in users:
+                print user['name']
                 (results,result_set) = recommenderer.recommender(user["Beers_Rated"], reviews, clusters, db)
                 collection.update({"_id": user["_id"]}, {"$set": {"Recommendations": results}})
                 updated = (True,1)
@@ -26,7 +27,7 @@ class RecommendationCalculations():
 
             last_update_start = datetime.now()
             if updated[0]:
-                time.sleep(updated[1]*10);
+                time.sleep(updated[1]*5);
                 print 'Slept for '+str(updated[1]*10) + ' seconds'
                 updated = (False,updated[1])
             else:
