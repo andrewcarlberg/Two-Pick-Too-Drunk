@@ -47,7 +47,6 @@ class RegisterHandler(LoginHandler):
 
   def post(self):
     args = self.request.arguments    
-    print args
     db = utils.connect_db('Two_Pick_Too_Drunk')
     collection = db['User']
     u = User.search(nick_l=args['username'][0].lower()).first()
