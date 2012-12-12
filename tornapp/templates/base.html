@@ -57,7 +57,7 @@
                 <li><a href='/account/ratings'><span>Reviewed Beers</span></a></li>
                 <li><a href='/account/recommendations'><span>Top Beers and Bottom Beers</span></a></li>
                 <li><a href='/account/places'><span>Beers at Places</span></a></li>
-                <li><a href='#'><span>To Drink List</span></a></li>
+                <!-- <li><a href='#'><span>To Drink List</span></a></li> -->
             </ul>
         </li>
         <li><a href='/search'><span>Search and Rate</span></a></li>
@@ -70,7 +70,13 @@
 </div>
 
 <div class="span-24 last footer">
-{% block footer %}{% end %}
+{% block footer %}
+<div class="footer" align ="center" style="font-size: 10px;
+    padding-top: 10%;
+    padding-bottom: 20px;">
+This was developed as a TAMU CSCE 470 project
+</div>
+{% end %}
 </div>
 
 </div>

@@ -9,7 +9,12 @@ Two Pick Too Drunk
 
 
 {% if current_user %}
-Hello, {{current_user.name}}
+Hello, {{current_user.nick}}</br>
+<br>
+<a href='/search'>Rate some Beers</a><br>
+<a href='/account/recommendations'>View your recommendations</a><br>
+<a href='/account/rated'>Change some ratings</a><br>
+<a href='/account/places'>What should I get a this bar I'm at!</a>
 
 {% else %}
 You should really log in or create and account
